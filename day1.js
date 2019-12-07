@@ -99,12 +99,12 @@ const starsList = [
     132358,
     99704,
     85305,
-    ]
+]
 
 const calculateFuelCost = (mass) => {
     const fuelCost = Math.floor(mass / 3) - 2;
 
-    if(fuelCost < 0) return 0;
+    if (fuelCost < 0) return 0;
     else return fuelCost;
 }
 
@@ -112,10 +112,10 @@ const calculateFuelWeightCost = (fuel) => calculateFuelCost(fuel);
 
 const calculateNavCost = (module) => {
     const fuelCost = calculateFuelCost(module);
-    var totalFuelWeightCost;
+    var totalFuelWeightCost = 0;
     var fuelToWeigh = fuelCost;
-    
-    while(fuelToWeigh > 0){
+
+    while (fuelToWeigh > 0) {
         fuelToWeigh = calculateFuelWeightCost(fuelToWeigh);
         totalFuelWeightCost += fuelToWeigh;
     }
@@ -124,16 +124,12 @@ const calculateNavCost = (module) => {
 }
 
 const getTotalCost = () => {
-
-    console.log(calculateFuelCost(1969));
-    console.log(calculateFuelWeightCost(654));
-    console.log(calculateNavCost(1969));
-
     var totalFuelCost = 0;
-    for(var i = 0; i < starsList.length; i++){
-        totalFuelCost += calculateFuelCost(starsList[i]);
+    for (var i = 0; i < starsList.length; i++) {
+        totalFuelCost += calculateNavCost(starsList[i]);
     }
     console.log(totalFuelCost);
+    return totalFuelCost;
 }
 
 getTotalCost();
